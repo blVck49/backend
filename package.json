@@ -23,6 +23,7 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "axios": "^1.5.1",
     "ejs": "^3.1.9",
     "instascan": "^1.0.0",
     "jsdom": "^22.1.0",
