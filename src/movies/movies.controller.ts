@@ -1,5 +1,4 @@
-import { Body, Controller, Render, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Body, Controller, Render } from '@nestjs/common';
 import { Get, Post } from "@nestjs/common";
 import { MoviesService } from './movies.service';
 import { createDto } from './dto';
@@ -11,46 +10,17 @@ export class MoviesController {
     @Get("/")
     @Render("index")
     async fetch() {
-    //fetch(@Res() res: Response) {
-        //return this.MoviesService.list()
-        //return {subtitle: this.MoviesService.list()}
 
-        //return { message: "Hello world"}
-        const k = this.MoviesService.list()
+        const doc = this.MoviesService.list()
 
         const myPromise = new Promise((resolve) => {
             setTimeout(() => {
-              resolve(k);
+              resolve(doc);
             }, 2000); // Simulated delay of 2 seconds
           });
+          
+          return {result: await myPromise}
 
-          const result = await myPromise
-
-          return {result: result}
-
-
-        /*
-          [
-            {
-                name
-                id
-                image
-            },
-          ]
-
-        */
-          // Render the result template with the resolved Promise value
-        //   return myPromise.then((result) => {
-        //     res.render('array', { myArray: result });
-        //   });
-
-        //   const contentArray = [
-        //     { data: 'first' },
-        //     { data: 'second' },
-        //     { data: 'third' },
-        //   ];
-
-        // return res.render("array", { myArray: contentArray,})
     }
 
     @Post("/create")

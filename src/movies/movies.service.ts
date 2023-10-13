@@ -40,21 +40,8 @@ export class MoviesService {
 
             const selectedElements = result.slice(0, 10);
 
-            //console.log(selectedElements)
             return selectedElements
-        
-
-        //     const rows = selectedElements.map(s => {
-        //         //console.log(s)
-        //         return `<t>
-        //     <td>${s.name}</td>
-        //     <td>${s.image}</td>
-        //   </tr>`
-        //     })
-
-        //     return rows
-
-            
+                
 
         } catch (error) {
             return new InternalServerErrorException("Internal Server Error", { cause: new Error(), description: error.message||error})
