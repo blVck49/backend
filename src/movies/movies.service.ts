@@ -1,5 +1,4 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import axios from "axios"
 import { prismaService } from '../prisma/prisma.service';
 import { createDto } from './dto';
 
@@ -18,16 +17,10 @@ export class MoviesService {
 
     async list() {
         try {
-            // const url = "https://gist.githubusercontent.com/saniyusuf/406b843afdfb9c6a86e25753fe2761f4/raw/523c324c7fcc36efab8224f9ebb7556c09b69a14/Film.JSON"
-            // const doc = await axios({
-            //     method: "get",
-            //     url: url,
-            // })
 
             const doc = await this.prisma.movie.findMany()
 
-            const result = doc
-
+            const result: Array<Object> = doc
 
             async function shuffleMovies(movies: Array<Object>) {
                 for (let i = 0; i < movies.length - 1; i++) {
