@@ -1,21 +1,13 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
-import cors from "cors";
 
 
-// var whitelist = ['http://localhost',]
-// var corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {cors: true});
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {cors: true});
+  app.set('views', './src/views');
+  app.set('view engine', 'ejs');
   await app.listen(3000);
 
 
